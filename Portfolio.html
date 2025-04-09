@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benim Portfolyom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      padding: 4rem 1rem;
+      text-align: center;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 1s ease;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeInUp 1s ease;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #00bcd4;
+      padding-left: 0.5rem;
+    }
+    p { margin-bottom: 1rem; }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(6px);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      color: #00e5ff;
+    }
+
+    .contact {
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .contact a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact a:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Barkan Anıl Teke</h1>
+    <p>Software Engineer</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>Last year Computer Engineering student. Love </p>
+  </section>
+
+  <section>
+    <h2>Projelerim</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Proje 1: Portfolio Web</h3>
+        <p>HTML/CSS ile yapılmış minimalist bir kişisel portfolyo. Responsive yapı ve sade tasarım.</p>
+      </div>
+      <div class="project-card">
+        <h3>Proje 2: Film Arama App</h3>
+        <p>Vue.js ile geliştirilen bir film arama uygulaması. OMDB API ile entegre, karanlık tema destekli.</p>
+      </div>
+      <div class="project-card">
+        <h3>Proje 3: Dashboard Panel</h3>
+        <p>React tabanlı admin paneli. Dinamik veri görselleştirmeleri ve kullanıcı dostu arayüz.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Me</h2>
+    <p>Mail: <a href="mailto:barkant64@gmail.com">barkant64@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/Easlkad" target="_blank">github.com/Easlkad</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/barkan-anil-teke/" target="_blank">linkedin.com/in/barkan-anil-teke</a></p>
+  </section>
+</body>
+</html>
