@@ -3,198 +3,549 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benim Portfolyom</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Barkan Anıl Teke - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --background: hsl(0 0% 100%);
+      --foreground: hsl(222.2 84% 4.9%);
+      --card: hsl(0 0% 100%);
+      --card-foreground: hsl(222.2 84% 4.9%);
+      --popover: hsl(0 0% 100%);
+      --popover-foreground: hsl(222.2 84% 4.9%);
+      --primary: hsl(222.2 47.4% 11.2%);
+      --primary-foreground: hsl(210 40% 98%);
+      --secondary: hsl(210 40% 96%);
+      --secondary-foreground: hsl(222.2 84% 4.9%);
+      --muted: hsl(210 40% 96%);
+      --muted-foreground: hsl(215.4 16.3% 46.9%);
+      --accent: hsl(210 40% 96%);
+      --accent-foreground: hsl(222.2 84% 4.9%);
+      --destructive: hsl(0 84.2% 60.2%);
+      --destructive-foreground: hsl(210 40% 98%);
+      --border: hsl(214.3 31.8% 91.4%);
+      --input: hsl(214.3 31.8% 91.4%);
+      --ring: hsl(222.2 84% 4.9%);
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: hsl(222.2 84% 4.9%);
+      --foreground: hsl(210 40% 98%);
+      --card: hsl(222.2 84% 4.9%);
+      --card-foreground: hsl(210 40% 98%);
+      --popover: hsl(222.2 84% 4.9%);
+      --popover-foreground: hsl(210 40% 98%);
+      --primary: hsl(210 40% 98%);
+      --primary-foreground: hsl(222.2 47.4% 11.2%);
+      --secondary: hsl(217.2 32.6% 17.5%);
+      --secondary-foreground: hsl(210 40% 98%);
+      --muted: hsl(217.2 32.6% 17.5%);
+      --muted-foreground: hsl(215 20.2% 65.1%);
+      --accent: hsl(217.2 32.6% 17.5%);
+      --accent-foreground: hsl(210 40% 98%);
+      --destructive: hsl(0 62.8% 30.6%);
+      --destructive-foreground: hsl(210 40% 98%);
+      --border: hsl(217.2 32.6% 17.5%);
+      --input: hsl(217.2 32.6% 17.5%);
+      --ring: hsl(212.7 26.8% 83.9%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      font-feature-settings: 'cv11', 'ss01';
+      font-variation-settings: 'opsz' 32;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    header {
+      padding: 6rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .theme-toggle svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: var(--foreground);
+      transition: all 0.2s ease;
+    }
+
+    .dark .theme-toggle .sun-icon {
+      display: none;
+    }
+
+    .theme-toggle .moon-icon {
+      display: none;
+    }
+
+    .dark .theme-toggle .moon-icon {
+      display: block;
+    }
+
+    .header-content {
+      text-align: center;
+    }
+
+    .header-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-content p {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      font-weight: 400;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: var(--background)/95;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+      padding: 1rem 0;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .nav-content a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+    }
+
+    .nav-content a:hover {
+      color: var(--foreground);
+      background-color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-size: 2.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      color: var(--muted-foreground);
+      font-size: 1.125rem;
+    }
+
+    /* Cards */
+    .card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--foreground);
+    }
+
+    .card p {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
       line-height: 1.6;
     }
-    header {
-      padding: 4rem 1rem;
-      text-align: center;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
-      animation: fadeInDown 1s ease;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    header p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-    }
 
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-      animation: fadeInUp 1s ease;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid #00bcd4;
-      padding-left: 0.5rem;
-    }
-    p { margin-bottom: 1rem; }
-
-    .projects {
+    /* Grid Layouts */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
-    .project-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-      backdrop-filter: blur(6px);
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-    }
-    .project-card h3 {
-      margin-bottom: 0.5rem;
-      color: #00e5ff;
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
-    .contact {
-      background: rgba(0, 0, 0, 0.3);
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* About Section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
-      padding: 3rem 1rem;
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.2);
     }
-    .contact a {
-      color: #00e5ff;
+
+    .about-content p {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+    }
+
+    /* Experience Section */
+    .experience-item {
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary);
+      border-radius: 50%;
+    }
+
+    .experience-item h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .experience-item .company {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-item ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .experience-item li {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+      position: relative;
+    }
+
+    .experience-item li::before {
+      content: '•';
+      color: var(--primary);
+      position: absolute;
+      left: -1rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--muted)/30;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--foreground);
       text-decoration: none;
-      transition: color 0.3s;
-    }
-    .contact a:hover {
-      color: #fff;
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.2s ease;
+      background-color: var(--background);
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      h2 { font-size: 1.5rem; }
+    .contact-links a:hover {
+      background-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .nav-content {
+        gap: 1rem;
+      }
+      
+      .nav-content a {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+      }
+      
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      section {
+        padding: 3rem 0;
+      }
+      
+      .section-header h2 {
+        font-size: 1.875rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-content h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 1rem;
+      }
+      
+      .experience-item {
+        padding-left: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Barkan Anıl Teke</h1>
-    <p>Junior Software Engineer</p>
+    <div class="container">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <div class="header-content">
+        <h1>Barkan Anıl Teke</h1>
+        <p>Junior Software Engineer</p>
+      </div>
+    </div>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>I am a junior software developer with a strong background in backend and full-stack development, currently expanding my expertise in systems programming with C and C++.
-    I am particularly interested in exploring topics such as database internals, low-level architecture, memory management, and performance optimization.
-    My previous experience includes developing scalable backend services, desktop and mobile applications, and designing machine learning models for practical use cases.</p>
-  </section>
-
-
-  <section>
-    <h2>Experiences</h2>
-    <ul>
-      <li>
-        <strong>Backend Trainee – Masif Process</strong>  
-        <br>
-        <em>Feb 2025 – Present | Izmir, Turkey</em>
-        <ul>
-          <li>Developing and maintaining backend services using C# to support manufacturing processes.</li>
-          <li>Collaborating with senior developers to design scalable software systems for industrial use.</li>
-          <li>Configuring IoT devices and processing live data streams using message brokers.</li>
-        </ul>
-      </li>
-      <br>
-      <li>
-        <strong>Backend Trainee – Kokteyl</strong>  
-        <br>
-        <em>Sep 2023 | Istanbul, Turkey</em>
-        <ul>
-          <li>Applied C# and .NET framework principles to build backend components following the MVC pattern.</li>
-          <li>Worked with PostgreSQL for database integration and management.</li>
-          <li>Built a C# web scraping project and contributed to overall project architecture alongside senior developers.</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
-
- 
-  <section>
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Proje 1: Portfolio Web</h3>
-        <p>Developed a minimalist personal portfolio website using HTML and CSS to showcase projects and skills.
-
-Focused on clean design and responsive layout to ensure cross-device compatibility.</p>
+  <nav>
+    <div class="container">
+      <div class="nav-content">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
-      <div class="project-card">
-        <h3>Proje 2: AI Assisted Language Learning App</h3>
-        <p>Built a language learning mobile app using React Native, inspired by platforms like Duolingo and Memrise.
+    </div>
+  </nav>
 
-        Integrated Generative AI models to deliver intelligent, adaptive language practice.
-
-        Designed the system to support multi-language learning with personalized feedback.</p>
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Me</h2>
+        <p>Passionate about building efficient and scalable software solutions</p>
       </div>
-      <div class="project-card">
-        <h3>Proje 3: Reinforcement Learning Snake Game</h3>
-        <p>Implemented a Reinforcement Learning agent to play Snake using TorchSharp in a .NET environment.
-
-          Focused on training the AI to optimize survival and maximize score through trial-and-error learning.</p>
-      </div>
-      <div class="project-card">
-        <h3>Proje 4: Chat Application</h3>
-        <p>Created a real-time group chat application using C# Sockets to manage user communication.
-
-Handled user connections, message broadcasting, and concurrent messaging with multi-threaded architecture.</p>
-      </div>
-      <div class="project-card">
-        <h3>Proje 5: Self-Vault </h3>
-        <p>Built a cross-platform personal vault application for securely storing user account information and credentials.
-
-Developed the frontend using React and Electron to deliver a modern and user-friendly interface.
-
-Leveraged Rust for the backend to ensure high performance and memory efficiency.  </p>
-      </div>
-      <div class="project-card">
-        <h3>Proje 6: Model Builder</h3>
-        <p>Currently building a machine learning model builder interface with React (frontend) and FastAPI (backend).
-
-Aims to help users design, train, and evaluate ML models interactively with a focus on usability and performance. </p>
-      </div>
-      <div class="project-card">
-        <h3>Proje 7: Real-Time Anomaly Detection</h3>
-        <p>Developing a stream-based anomaly detection system using online learning algorithms.
-
-Focuses on real-time data processing and anomaly signaling for time-series sensor data in industrial environments.  </p>
+      <div class="about-content">
+        <p>I am a Computer Engineering student at Manisa Celal Bayar University with a strong background in backend development and systems programming. I specialize in C#/.NET, Go, and low-level programming with C/C++. My experience spans from building enterprise microservices and IoT data processing systems to developing custom database engines and operating systems from scratch. I'm passionate about performance optimization, distributed systems, and creating robust, scalable software solutions.</p>
       </div>
     </div>
   </section>
 
-  <section class="contact">
-    <h2>Contact Me</h2>
-    <p>Mail: <a href="mailto:barkant64@gmail.com">barkant64@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/Easlkad" target="_blank">github.com/Easlkad</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/barkan-anil-teke/" target="_blank">linkedin.com/in/barkan-anil-teke</a></p>
+  <section id="experience">
+    <div class="container">
+      <div class="section-header">
+        <h2>Experience</h2>
+        <p>My professional journey and growth</p>
+      </div>
+      <div class="experience-item">
+        <h3>Backend Intern</h3>
+        <div class="company">Massive Process • Feb 2025 – June 2025 • Izmir, Turkey</div>
+        <ul>
+          <li>Assembled backend services to process and analyze real-time IoT data from factory machines using C#/.NET MQTT</li>
+          <li>Enhanced background services ensuring 99% uptime and seamless integration into internal tools</li>
+          <li>Created backend logic with C#/.NET, used MQTT brokers for data communication, and ensured robust data flow from devices</li>
+          <li>Improved data processing efficiency, reducing latency by 20% in industrial monitoring</li>
+        </ul>
+      </div>
+      <div class="experience-item">
+        <h3>Backend Intern</h3>
+        <div class="company">Kokteyl • Aug 2023 – Sept 2023 • Istanbul, Turkey</div>
+        <ul>
+          <li>Designed and implemented PostgreSQL-backed .NET MVC modules for high-volume data operations</li>
+          <li>Built backend features in C# using .NET MVC, connected PostgreSQL, and developed a C# scraper for data automation, cutting manual data collection by 30%</li>
+          <li>Delivered modular, testable backend components that improved maintainability across internal systems</li>
+        </ul>
+      </div>
+    </div>
   </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2>Projects</h2>
+        <p>A collection of my recent work and experiments</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Spotify Clone (Backend)</h3>
+          <p>Engineered a microservices architecture with Go/Golang, implementing automated testing protocols that achieved 99% successful launches. Constructed RESTful APIs with PostgreSQL database and GORM ORM integration, AWS S3 media storage with presigned URLs, and real-time chat using WebSocket connections.</p>
+        </div>
+        <div class="card">
+          <h3>Jobist - Enterprise Platform</h3>
+          <p>Built enterprise .NET 8.0 microservices platform with 5 services using CQRS, MediatR, and Domain-Driven Design architecture. Integrated JWT authentication with OAuth 2.0, event-driven messaging with MassTransit/RabbitMQ, and containerized services with Docker.</p>
+        </div>
+        <div class="card">
+          <h3>E-Commerce Application</h3>
+          <p>Developed enterprise e-commerce API implementing 26 design patterns (GoF + Enterprise) with 4-layer Clean Architecture, achieving 100% SOLID principles compliance. Built 30+ RESTful endpoints using .NET 8 and Entity Framework Core with interactive Swagger documentation.</p>
+        </div>
+        <div class="card">
+          <h3>Self-Use Vault</h3>
+          <p>Built a secure, cross-platform personal vault application for storing credentials. Developed in Electron with a Rust backend to ensure memory safety and encryption. Performed well on desktop environments and integrated into daily use.</p>
+        </div>
+        <div class="card">
+          <h3>Automotive Service Management</h3>
+          <p>Developed Qt/QML desktop application to digitize automotive service workflows and eliminate manual record-keeping. Built comprehensive transaction management system with customer tracking, financial reporting, and modern UI with real-time data updates.</p>
+        </div>
+        <div class="card">
+          <h3>Custom Database Engine</h3>
+          <p>Built a lightweight, hybrid in-memory/on-disk database engine in C++. Designed and implemented B-Tree and hash-based indexing, handled page allocation and serialization manually. Achieved sub-millisecond latency in memory mode with .NET integration.</p>
+        </div>
+        <div class="card">
+          <h3>Custom Operating System</h3>
+          <p>Developed a custom 32-bit OS from scratch including bootloader, kernel, and shell interface. Implemented virtual memory management with paging, file system operations, and real-time keyboard input. Created bootable OS image with 9 shell commands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <p>Let's connect and discuss opportunities</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:barkant64@gmail.com">
+          <span>📧</span>
+          Email
+        </a>
+        <a href="https://github.com/Easlkad" target="_blank">
+          <span>🐙</span>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/barkan-anil-teke/" target="_blank">
+          <span>💼</span>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Theme functionality
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', newTheme);
+    }
+
+    // Initialize theme on page load
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const theme = savedTheme || systemTheme;
+      
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    }
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        if (e.matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    });
+
+    // Initialize theme when page loads
+    initTheme();
+  </script>
 </body>
 </html>
